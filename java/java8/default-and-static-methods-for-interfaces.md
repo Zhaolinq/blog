@@ -224,3 +224,5 @@ class App implements B, A {
     }
 }
 ```
+
+[![Analytics](https://ga-beacon.appspot.com/UA-89268287-1/Zhaolinq/blog/blob/master/java/java8/default-and-static-methods-for-interfaces.md?pixel)](https://github.com/igrigorik/ga-beacon)
