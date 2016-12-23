@@ -84,7 +84,9 @@ Comparator comparator = (first, second) -> first.length() - second.length(); // 
 
 ## Lambda表达式在 Java 8中是怎么实现的？
 
-不是任意的接口都可以使用Lambda表达式。**只有一个抽象方法的接口才能使用Lambda表达式**。这种接口被称为**功能接口**，可以加上`@FunctionalInterface`注解。`Runnable`接口就是一个功能接口。
+不是所有的接口都可以使用Lambda表达式。**Lambda表达式时要求使用的接口只有一个抽象方法**，而这种接口被称为**功能接口**，可以被加上`@FunctionalInterface`注解。
+
+`Runnable`接口就是一个功能接口。
 
 ```java
 @FunctionalInterface
@@ -95,13 +97,9 @@ public interface Runnable {
 
 `@FunctionalInterface` 可以用来标识功能接口，但不是必须的。 如果被标记为`@FunctionalInterface`的接口有多个抽象方法的话，编译的时候会报***Multiple non-overriding abstract methods found*** 的错误；如果标记在没有任何方法的接口（marker interface）上，将返回***No target method found*** 的错误
 
-那么，***lambda 表达式只是Java 8 中提供的一个匿名内部类的语法糖么？它是怎么翻译成字节码的？***
+表面看来Lambda表达式只是匿名内部类的另一种写法，但是实际上，lambda表达式不是用匿名内部类实现的。原因有两个：
 
-其实不是的，java中不使用匿名内部类的原因有以下两个：
-
-
-
-1. **性能影响**: 如果使用匿名类，那么的编译的时候就得生成一个class文件，会拖慢JVM的启动速度。
+1. **性能影响**: 如果使用匿名类，那么的编译的时候就得生成一个class文件。class文件多了会拖慢JVM的启动速度。
 
 2. **未来的扩展性**: 使用匿名类以后扩展起来比较困难。
 
